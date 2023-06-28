@@ -1,76 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLATACULTIES</title>
-    <script defer src="./static/js/wk2_code_challenge.js"></script>
-  </head>
-  <body>
-    <header class="header header--fixed">
-      <div class="header__log-and-search">
-        <div class="logo"><span>Flataculties</span></div>
-        <input class="header__search" type="search" placeholder="Search Animals">
-      </div>
-      <div class="header__app">Get App</div>
-      <div class="header__log-in"><a href="#">Log In</a></div>
-      <div class="header__profile-menu">icon</div>
-    </header>
-    <main class="main">
-      <section class="main__left-section main__left-section--fixed">
-        <ul class="main__vertical-nav">
-          <li class="main__vertical-nav-item"><a href="#">Home</a></li>
-          <li class="main__vertical-nav-item"><a href="#">Popular</a></li>
-        </ul>
-        <div class="card">
-          <h1 class="card__title card__title--font-size">Animals</h1>
-          <div id="animal-list" class="card__body card__body--scroll">
-            <!-- Animal list names and profiles go here -->
-          </div>
-        </div>
-        <div class="main__join">
-          <p class="main__join-description">Create an account to follow your favorite communities and start taking part in conversations.</p>
-          <a class="main__join-button" href="#">Join Flataculties</a>
-        </div>
-      </section>
-      <section class="main__right-section">
-        <section class="main__content">
-          <!-- Animal profile details go here -->
-          <div class="animal">
-            <div id="animal__vote" class="animal__vote">
-              <button id="vote" class="animal__vote-btn">Vote</button>
-              <h1 class="animal__vote-count">0</h1>
-              <button id="reset" class="animal__vote-btn">Reset</button>
-            </div>
-            <div id="animal__detail" class="animal__detail">
-              <h1 class="animal__name">Mr. Cute</h1>
-              <p class="animal__description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam molestias ad blanditiis doloremque, unde ullam veniam optio illum, dolore, dolorem numquam corporis accusamus. Nemo quia animi minima, aperiam delectus illo.
-              </p>
-              <img class="animal__img" src="https://thumbs.gfycat.com/EquatorialIckyCat-max-1mb.gif" alt="animal">
-            </div>
-          </div>
-        </section>
-        <aside class="main__aside">
-          <div class="card card--relative">
-            <h1 class="card__title">About Community</h1>
-            <p class="card__body">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum facilis quis vitae totam eaque alias veritatis quia fuga, in ab obcaecati reiciendis asperiores nemo eveniet incidunt placeat cum ut! Consectetur.
-            </p>
-            <p class="card__footer"><a href="#">Learn more about us</a></p>
-          </div>
-        </aside>
-      </section>
-    </main>
-    <div id="add-animal">
-      <h2>Add Animal</h2>
-      <form id="add-animal-form">
-        <label for="animal-name">Name:</label>
-        <input type="text" id="animal-name" required>
-        <label for="animal-image">Image URL:</label>
-        <input type="text" id="animal-image" required>
-        <button type="submit">Add</button>
-      </form>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flataculties</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>FLATACULTIES - VOTE FOR THE CUTEST ANIMAL</h1>
+  </header>
+
+  <main>
+    <section class="animal-names">
+      <h2>NAMES OF ANIMALS</h2>
+      <ul id="animal-names"></ul>
+    </section>
+
+    <section class="animal-details">
+      <h2>ANIMAL DETAILS</h2>
+      <div id="animal-details"></div>
+    </section>
+
+    <section class="animal-votes">
+      <h2>ANIMAL VOTES</h2>
+      <input type="number" id="vote-input" min="0" value="0">
+      <button id="vote-button">Vote</button>
+      <button id="reset-button">Reset</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>

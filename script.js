@@ -1,100 +1,47 @@
-const MAIN_URL = "http://localhost:3000/characters";
+document.addEventListener('DOMContentLoaded', () => {
+  // Fetch animal data from the server
+  fetch('http://localhost:3000/characters')
+    .then(response => response.json())
+    .then(data => {
+      const animalNamesList = document.getElementById('animal-names');
+      const animalDetailsContainer = document.getElementById('animal-details');
 
-const animalListNode = document.querySelector("#animal-list");
-const animalVotesNode = document.querySelector("#animal__vote");
-const animalDetailNode = document.querySelector("#animal__detail");
+      // Show the animal names list
+      data.forEach(animal => {
+        const listItem = document.createElement('li');
+        listItem.textContent = animal.name;
+        listItem.addEventListener('click', () => {
+          // Display animal details when clicked
+          displayAnimalDetails(animal);
+        });
+        animalNamesList.appendChild(listItem);
+      });
 
-const getDomainUrl = () => {
-  return MAIN_URL;
-};
+      // Function to display animal details
+      function displayAnimalDetails(animal) {
+        animalDetailsContainer.innerHTML = `
+          <img src="${animal.image}" alt="${animal.name}">
+          <p>Votes: ${animal.votes}</p>`;
+      }
+    });
 
-/**
- * Fethes all character animals from the server using get
- * request. It returns an array of objects
- */
-const fetchAllAnimals = () => {
-  fetch(getDomainUrl())
-    .then((result) => result.json())
-    .then((data) => createAnimals(data));
-};
-
-/**
- * Fetches the animal by id provided
- * @param {*} id
- */
-const fetchAnimalById = (id) => {
-  fetch(`${getDomainUrl()}/${id}`)
-    .then((result) => result.json())
-    .then((data) => createAnimalProfile(data));
-};
-
-/**
- * Receives data in array of objects
- * @param {*} data
- */
-const createAnimals = (data) => {
-  data.forEach((character) => {
-    const div = document.createElement("div");
-    const img = document.createElement("img");
-    const span = document.createElement("span");
-
-    img.src = character.image;
-    img.alt = character.name;
-    span.textContent = character.name;
-
-    div.classList.add("card__animal-profile");
-    img.classList.add("card__animal_img");
-    span.classList.add("card__animal-name");
-
-    div.id = character.id;
-
-    div.appendChild(img);
-    div.appendChild(span);
-
-    div.addEventListener("click", buildAnimalProfileHandler);
-    animalListNode.appendChild(div);
+  // Vote button click event
+  const voteButton = document.getElementById('vote-button');
+  voteButton.addEventListener('click', () => {
+    const voteInput = document.getElementById('vote-input');
+    const votes = parseInt(voteInput.value, 10);
+    if (!isNaN(votes)) {
+      const animalDetailsContainer = document.getElementById('animal-details');
+      const votesParagraph = animalDetailsContainer.querySelector('p');
+      votesParagraph.textContent = `Votes: ${votes}`;
+    }
   });
-};
 
-const createAnimalProfile = (data) => {
-  const voteNode = animalVotesNode.querySelector("h1");
-  const button = animalVotesNode.querySelector("button");
-
-  voteNode.textContent = data.votes;
-  button.addEventListener("click", incrementVotesHandler);
-
-  const nameNode = animalDetailNode.querySelector("h1");
-  const imageNode = animalDetailNode.querySelector("img");
-
-  nameNode.textContent = data.name;
-  imageNode.src = data.image;
-  imageNode.atl = data.name;
-};
-
-const incrementVotesHandler = (e) => {
-  const parentNode = e.target.parentNode;
-  const votesNode = parentNode.querySelector("h1");
-  const votes = Number.parseInt(votesNode.textContent);
-  votesNode.textContent = incrementNumberByOne(votes);
-};
-
-const incrementNumberByOne = (num) => {
-  return (num += 1);
-};
-
-/**
- * Builds animal profile
- */
-const buildAnimalProfileHandler = (e) => {
-  const animalId = e.target.parentNode.id;
-  fetchAnimalById(animalId);
-};
-
-/**
- * Initializes app when the app is loaded
- */
-const init = () => {
-  fetchAllAnimals();
-};
-
-window.onload = init;
+  // Reset button click event
+  const resetButton = document.getElementById('reset-button');
+  resetButton.addEventListener('click', () => {
+    const animalDetailsContainer = document.getElementById('animal-details');
+    const votesParagraph = animalDetailsContainer.querySelector('p');
+    votesParagraph.textContent = 'Votes: 0';
+  });
+});

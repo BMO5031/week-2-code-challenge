@@ -1,0 +1,70 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+.animal-names,
+.animal-details,
+.animal-votes {
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  cursor: pointer;
+  padding: 5px;
+  background-color: #f1f1f1;
+  margin-bottom: 5px;
+}
+
+li:hover {
+  background-color: #e1e1e1;
+}
+
+.animal-details img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 5px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #555;
+}
